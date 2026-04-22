@@ -1,0 +1,340 @@
+\documentclass[12pt,a4paper]{article}
+
+% ============================================
+% PACKAGES - Language & Encoding
+% ============================================
+\usepackage[utf8]{inputenc}  % UTF-8 input encoding
+\usepackage[vietnamese]{babel}  % Vietnamese language support
+\usepackage[T5]{fontenc}  % T5 encoding MUST be loaded AFTER babel
+\usepackage{indentfirst}
+
+% Use VnTeX fonts for better Vietnamese support
+\usepackage{lmodern}  % Latin Modern font family (better Unicode support)
+
+% ============================================
+% FONT - Vietnamese support with VnTeX
+% ============================================
+% \usepackage{helvet}  % Commented out - doesn't support Vietnamese well
+% \renewcommand{\familydefault}{\sfdefault}
+% Using default Computer Modern font which works better with T5 encoding
+
+% ============================================
+% PACKAGES - Math & Symbols
+% ============================================
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% ============================================
+% PACKAGES - Graphics & Figures
+% ============================================
+\usepackage{graphicx}  % graphicx includes all graphics functionality
+\usepackage{tikz}
+\usetikzlibrary{patterns,calc,angles}  % Combined TikZ libraries
+\usepackage{float}
+
+% ============================================
+% PACKAGES - Tables & Layout
+% ============================================
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Caption configuration for professional formatting
+\captionsetup{
+    font=small,           % Caption text size
+    labelfont=bf,         % "Bảng 1", "Hình 1" in bold
+    labelsep=period,      % Use period after label (Bảng 1. instead of Bảng 1:)
+    justification=centering,  % Center caption text
+    skip=10pt             % Space between caption and content
+}
+
+% Tables: caption below, Figures: caption below
+\captionsetup[table]{position=bottom}
+\captionsetup[figure]{position=bottom}
+
+% ============================================
+% PACKAGES - Page Layout
+% ============================================
+\usepackage[left=3cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing  % Line spacing 1.5
+\usepackage{fancyhdr}
+\usepackage[bottom]{footmisc}
+
+% Paragraph formatting
+\setlength{\parindent}{1cm}  % Indent first line of paragraph
+\setlength{\parskip}{6pt}    % Space between paragraphs
+
+% ============================================
+% PACKAGES - Lists & Enumerations
+% ============================================
+\usepackage{enumitem}
+\setlist{nolistsep}
+
+% ============================================
+% PACKAGES - Code Listings
+% ============================================
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Define colors for code
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% PHP Style
+\lstdefinestyle{phpstyle}{
+    language=PHP,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,  % Changed from footnotesize to small for better readability
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    frame=single,  % Add frame around code
+    rulecolor=\color{black!30}  % Light frame color
+}
+
+% HTML Style
+\lstdefinestyle{htmlstyle}{
+    language=HTML,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    captionpos=b,
+    numbers=left,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{black!30}
+}
+
+% CSS Style
+\lstdefinestyle{cssstyle}{
+    language=CSS,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    captionpos=b,
+    numbers=left,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{black!30}
+}
+
+% JavaScript Style
+\lstdefinestyle{jsstyle}{
+    language=Java,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    captionpos=b,
+    numbers=left,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{black!30}
+}
+
+\lstset{style=phpstyle} % Default style
+
+% ============================================
+% PACKAGES - Hyperlinks & References
+% ============================================
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue,
+    pdftitle={Báo cáo BTL Lập trình Web},
+    pdfauthor={Nhóm L01\_6},
+}
+
+% ============================================
+% PACKAGES - Others
+% ============================================
+\usepackage{mdframed}
+%\usepackage{mathptmx}  % Commented out due to font compilation issues
+\usepackage{titlesec}
+
+
+% ============================================
+% FORMATTING - Section Titles
+% ============================================
+% Section (Chương): 14pt, bold, uppercase
+\titleformat{\section}{\fontsize{14}{16}\selectfont\bfseries}{\thesection}{1em}{}
+% Subsection: 13pt, bold
+\titleformat{\subsection}{\fontsize{13}{15}\selectfont\bfseries}{\thesubsection}{1em}{}
+% Subsubsection: 13pt, bold, italic
+\titleformat{\subsubsection}{\fontsize{13}{15}\selectfont\bfseries\itshape}{\thesubsubsection}{1em}{}
+
+% ============================================
+% FORMATTING - Headers & Footers
+% ============================================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{BÀI TẬP LỚN LẬP TRÌNH WEB}}
+\rhead{\textit{Nhóm L01\_6}}
+\rfoot{Trang \thepage}
+\lfoot{\textit{GVHD: Nguyễn Hữu Hiếu}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{15.5pt}  % Fixed: increased from 14.97527pt to 15.5pt
+
+% ============================================
+% CUSTOM COMMANDS & ENVIRONMENTS
+% ============================================
+\newmdenv[linewidth=0.6pt,linecolor=black,skipabove=\topsep,skipbelow=\topsep,
+leftmargin=-5pt,rightmargin=-5pt,
+innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\newcommand\tab[1][0.7cm]{\hspace*{#1}}
+\setlength{\skip\footins}{0.5cm}
+
+% ============================================
+% DOCUMENT START
+% ============================================
+\begin{document}
+
+% Roman page numbering for front matter
+\pagenumbering{roman}
+
+% ============================================
+% TITLE PAGE
+% ============================================
+\begin{titlepage}
+    \begin{center}
+    \large \textbf{ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH} \\
+    \vspace{0.2cm}
+    \large \textbf{TRƯỜNG ĐẠI HỌC BÁCH KHOA} \\
+    \vspace{0.2cm}
+    \large \textbf{KHOA KHOA HỌC VÀ KĨ THUẬT MÁY TÍNH}
+    \end{center}
+
+    \vspace{0.5cm}
+
+    \begin{figure}[h!]
+    \begin{center}
+    \includegraphics[width=3.5cm]{Images/hcmut.png}
+    \end{center}
+    \end{figure}
+
+    \vspace{0.3cm}
+
+    \begin{center}
+    \begin{tabular}{c}
+    \multicolumn{1}{c}{\textbf{{\Large BÁO CÁO BÀI TẬP LỚN}}}\\
+    \\{\textbf{{\Large LẬP TRÌNH WEB (HK1 2025-2026)}}}
+    \\
+    \\
+    \textbf{\large Thiết kế giao diện và xây dựng các tính năng cơ bản}\\
+    \textbf{\large cho website công ty - doanh nghiệp}
+    \end{tabular}
+    \vspace{1cm}
+
+    \end{center}
+
+    \noindent
+    \hspace{2.5cm} {\normalsize \textbf{GIẢNG VIÊN HƯỚNG DẪN:} Nguyễn Hữu Hiếu}
+
+    \vspace{0.3cm}
+    \noindent
+    \hspace{2.5cm} {\normalsize \textbf{Lớp:} L01}
+
+    \vspace{0.3cm}
+    \noindent
+    \hspace{2.5cm} {\normalsize \textbf{DANH SÁCH THÀNH VIÊN:}}
+
+    \vspace{0.3cm}
+    \begin{center}
+        \begin{tabular}{|c|l|c|}
+        \hline
+        \textbf{STT} & \textbf{Họ và tên} & \textbf{MSSV} \\
+        \hline
+        1 & Hoàng Hữu Hà & 2113271 \\
+        \hline
+        2 & Lê Bảo Linh & 2311849 \\
+        \hline
+        3 & Nguyễn Trung Hiếu & 2113357 \\
+        \hline
+        4 & Hà Thế Bình & 2152435 \\
+        \hline
+        \end{tabular}
+    \end{center}
+
+    \vfill
+    \begin{center}
+        {\normalsize Thành phố Hồ Chí Minh - Tháng 12/2025}
+    \end{center}
+\end{titlepage}
+\newpage
+
+% ============================================
+% TABLE OF CONTENTS
+% ============================================
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+% Arabic page numbering for main content
+\pagenumbering{arabic}
+
+% ============================================
+% MAIN CONTENT
+% ============================================
+
+\input{Contents/introduction}
+\newpage
+
+\input{Contents/theoretical_foundation}
+\newpage
+
+\input{Contents/application_design}
+\newpage
+
+\input{Contents/implementation}
+\newpage
+
+\input{Contents/installation_guide}
+\newpage
+
+\input{Contents/team_contributions}
+\newpage
+
+\input{Contents/references}
+
+% ============================================
+% DOCUMENT END
+% ============================================
+\end{document}

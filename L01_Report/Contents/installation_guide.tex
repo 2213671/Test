@@ -1,0 +1,173 @@
+% ============================================
+% CHƯƠNG 5: HƯỚNG DẪN CÀI ĐẶT
+% ============================================
+
+\section{Hướng dẫn cài đặt}
+
+Chương này cung cấp hướng dẫn chi tiết để cài đặt và chạy dự án trên máy local.
+
+% ------------------------------------------
+\subsection{Yêu cầu hệ thống}
+
+\textbf{Phần cứng tối thiểu:}
+\begin{itemize}
+    \item CPU: Intel Core i3 hoặc tương đương
+    \item RAM: 4 GB
+    \item Disk space: 500 MB trống
+\end{itemize}
+
+\textbf{Hệ điều hành:}
+\begin{itemize}
+    \item Windows 10/11
+    \item macOS 10.15 trở lên
+    \item Linux (Ubuntu 20.04+, Fedora, etc.)
+\end{itemize}
+
+\textbf{Phần mềm yêu cầu:}
+\begin{itemize}
+    \item XAMPP phiên bản 8.0 trở lên (bao gồm Apache và PHP)
+    \item PHP phiên bản 7.4 trở lên (khuyến nghị 8.0+)
+    \item Trình duyệt web hiện đại: Chrome, Firefox, Edge (phiên bản mới nhất)
+    \item Git (tùy chọn, để clone project)
+\end{itemize}
+
+% ------------------------------------------
+\subsection{Các bước cài đặt}
+
+\subsubsection{Bước 1: Cài đặt XAMPP}
+
+\begin{enumerate}
+    \item Tải XAMPP từ \url{https://www.apachefriends.org/download.html}
+    \item Chạy file installer
+    \item Trong quá trình cài đặt, chọn các components:
+    \begin{itemize}
+        \item Apache (bắt buộc)
+        \item PHP (bắt buộc)
+        \item phpMyAdmin (tùy chọn, cho database)
+    \end{itemize}
+    \item Chọn thư mục cài đặt (mặc định: \texttt{C:\textbackslash xampp})
+    \item Hoàn tất cài đặt
+\end{enumerate}
+
+\subsubsection{Bước 2: Clone hoặc copy project}
+
+\textbf{Cách 1: Clone từ GitHub}
+\begin{verbatim}
+cd C:\xampp\htdocs
+git clone https://github.com/Binh205/BTL_Fahasa.git
+\end{verbatim}
+
+\textbf{Cách 2: Copy thủ công}
+\begin{enumerate}
+    \item Giải nén file project
+    \item Copy thư mục \texttt{BTL\_Fahasa} vào \texttt{C:\textbackslash xampp\textbackslash htdocs\textbackslash}
+\end{enumerate}
+
+\subsubsection{Bước 3: Khởi động Apache}
+
+\begin{enumerate}
+    \item Mở XAMPP Control Panel
+    \item Click nút "Start" ở hàng Apache
+    \item Đợi đến khi Apache chuyển sang màu xanh
+    \item (Tùy chọn) Start MySQL nếu cần database
+\end{enumerate}
+
+\textbf{Lưu ý:} Nếu port 80 đã bị chiếm, có thể đổi sang port khác (ví dụ 8080):
+\begin{enumerate}
+    \item Click "Config" $\rightarrow$ "httpd.conf"
+    \item Thay đổi \texttt{Listen 80} thành \texttt{Listen 8080}
+    \item Thay đổi \texttt{ServerName localhost:80} thành \texttt{ServerName localhost:8080}
+    \item Lưu file và restart Apache
+\end{enumerate}
+
+% ------------------------------------------
+\subsection{Cấu hình}
+
+\subsubsection{File config.php}
+
+Mở file \texttt{app/config/config.php} và kiểm tra các settings:
+
+\begin{lstlisting}[style=phpstyle, caption=File cấu hình config.php]
+<?php
+// Base URL - thay doi neu can
+define('BASE_URL', 'http://localhost:8080/BTL_Fahasa/public/');
+
+// App name
+define('APP_NAME', 'Fahasa Clone');
+
+// App root path
+define('APP_ROOT', dirname(dirname(__FILE__)));
+
+// Database config (neu su dung)
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'btl_fahasa');
+?>
+\end{lstlisting}
+
+\textbf{Quan trọng:} Cập nhật \texttt{BASE\_URL} phù hợp với cấu hình của bạn:
+\begin{itemize}
+    \item Nếu dùng port 80: \texttt{http://localhost/BTL\_Fahasa/public/}
+    \item Nếu dùng port 8080: \texttt{http://localhost:8080/BTL\_Fahasa/public/}
+\end{itemize}
+
+\subsubsection{File .htaccess}
+
+Dự án cần mod\_rewrite để URL routing hoạt động. File \texttt{.htaccess} đã được cấu hình sẵn:
+
+\begin{verbatim}
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /BTL_Fahasa/public/
+    
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>
+\end{verbatim}
+
+% ------------------------------------------
+\subsection{Chạy ứng dụng}
+
+\subsubsection{Truy cập website}
+
+Mở trình duyệt và truy cập:
+\begin{verbatim}
+http://localhost:8080/BTL_Fahasa/public/
+\end{verbatim}
+
+Hoặc nếu dùng port 80:
+\begin{verbatim}
+http://localhost/BTL_Fahasa/public/
+\end{verbatim}
+
+\subsubsection{Các trang có thể truy cập}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{URL} & \textbf{Mô tả} \\
+\hline
+/home hoặc / & Trang chủ \\
+/product & Danh sách sản phẩm \\
+/product/detail/\{id\} & Chi tiết sản phẩm \\
+/cart & Giỏ hàng \\
+/customer & Thông tin tài khoản \\
+/customer/orders & Đơn hàng của tôi \\
+/customer/notifications & Thông báo \\
+/customer/wishlist & Sản phẩm yêu thích \\
+/news & Tin tức \\
+/news/detail/\{id\} & Chi tiết bài viết \\
+/home/about & Giới thiệu \\
+/home/qa & Hỏi đáp \\
+/home/contact & Liên hệ \\
+/auth/login & Đăng nhập \\
+/auth/register & Đăng ký \\
+\hline
+\end{tabular}
+\caption{Danh sách các routes}
+\label{tab:routes}
+\end{table}
+

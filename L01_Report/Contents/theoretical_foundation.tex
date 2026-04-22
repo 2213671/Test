@@ -1,0 +1,171 @@
+% ============================================
+% CHƯƠNG 2: CƠ SỞ LÝ THUYẾT
+% ============================================
+
+\section{Cơ sở lý thuyết}
+
+% ------------------------------------------
+\subsection{Công nghệ Frontend}
+
+\subsubsection{HTML5}
+
+HTML5 (HyperText Markup Language version 5) là phiên bản mới nhất của ngôn ngữ đánh dấu siêu văn bản, được sử dụng để cấu trúc và trình bày nội dung trên web.
+
+\textbf{Các tính năng mới của HTML5:}
+\begin{itemize}
+    \item \textbf{Semantic Elements:} Các thẻ có ý nghĩa như \texttt{<header>}, \texttt{<nav>}, \texttt{<section>}, \texttt{<article>}, \texttt{<footer>} giúp cấu trúc trang web rõ ràng hơn
+    \item \textbf{Form Elements:} Các input types mới như \texttt{email}, \texttt{date}, \texttt{tel}, \texttt{number} với validation tự động
+    \item \textbf{Multimedia:} Hỗ trợ \texttt{<video>} và \texttt{<audio>} native
+    \item \textbf{Canvas \& SVG:} Vẽ đồ họa trực tiếp trên trình duyệt
+\end{itemize}
+
+\subsubsection{CSS3}
+
+CSS3 (Cascading Style Sheets Level 3) là phiên bản mới nhất của CSS, cung cấp các tính năng styling mạnh mẽ cho web.
+
+\textbf{Các tính năng quan trọng:}
+\begin{itemize}
+    \item \textbf{Flexbox:} Layout một chiều linh hoạt cho việc căn chỉnh và phân bố không gian
+    \item \textbf{CSS Grid:} Layout hai chiều mạnh mẽ cho các thiết kế phức tạp
+    \item \textbf{Transitions \& Animations:} Tạo hiệu ứng chuyển động mượt mà
+    \item \textbf{Media Queries:} Responsive design cho nhiều kích thước màn hình
+    \item \textbf{Custom Properties:} CSS Variables cho quản lý styles dễ dàng
+\end{itemize}
+
+\subsubsection{Bootstrap 5}
+
+Bootstrap là framework CSS phổ biến nhất, giúp xây dựng giao diện responsive nhanh chóng.
+
+\textbf{Ưu điểm của Bootstrap 5:}
+\begin{itemize}
+    \item Hệ thống Grid 12 cột linh hoạt
+    \item Các components có sẵn: Navbar, Cards, Modals, Forms
+    \item Không phụ thuộc jQuery (khác với phiên bản cũ)
+    \item Utility classes phong phú
+    \item Documentation chi tiết và cộng đồng lớn
+\end{itemize}
+
+\textbf{Nhược điểm:}
+\begin{itemize}
+    \item Kích thước file CSS lớn nếu không tối ưu
+    \item Giao diện dễ bị "Bootstrap look" nếu không customize
+\end{itemize}
+
+\subsubsection{JavaScript}
+
+JavaScript là ngôn ngữ lập trình phía client, giúp tạo tương tác động trên trang web.
+
+\textbf{Các tính năng ES6+ sử dụng trong dự án:}
+\begin{itemize}
+    \item \texttt{let/const}: Khai báo biến có phạm vi block
+    \item \texttt{Arrow functions}: Cú pháp hàm ngắn gọn
+    \item \texttt{Template literals}: String interpolation với backticks
+    \item \texttt{DOM manipulation}: querySelector, addEventListener
+    \item \texttt{Fetch API}: Gọi API bất đồng bộ
+    \item \texttt{LocalStorage}: Lưu trữ dữ liệu trên trình duyệt
+\end{itemize}
+
+% ------------------------------------------
+\subsection{Công nghệ Backend}
+
+\subsubsection{PHP}
+
+PHP (Hypertext Preprocessor) là ngôn ngữ lập trình phía server phổ biến, đặc biệt trong phát triển web.
+
+\textbf{Đặc điểm của PHP:}
+\begin{itemize}
+    \item Dễ học và triển khai
+    \item Tích hợp tốt với HTML
+    \item Hỗ trợ nhiều database (MySQL, PostgreSQL, SQLite)
+    \item Cộng đồng lớn và nhiều framework (Laravel, Symfony)
+\end{itemize}
+
+\textbf{Các tính năng PHP sử dụng:}
+\begin{itemize}
+    \item Sessions để quản lý trạng thái người dùng
+    \item Autoloading với \texttt{spl\_autoload\_register}
+    \item Object-oriented programming
+    \item URL routing với \texttt{.htaccess}
+\end{itemize}
+
+\subsubsection{Mô hình MVC}
+
+MVC (Model-View-Controller) là kiến trúc phần mềm phân tách ứng dụng thành 3 thành phần:
+
+\begin{itemize}
+    \item \textbf{Model:} Xử lý logic nghiệp vụ và tương tác với dữ liệu
+    \item \textbf{View:} Hiển thị giao diện người dùng
+    \item \textbf{Controller:} Nhận request, xử lý logic và trả về response
+\end{itemize}
+
+\textbf{Lợi ích của MVC:}
+\begin{enumerate}
+    \item Tách biệt rõ ràng giữa logic và giao diện
+    \item Dễ bảo trì và mở rộng
+    \item Hỗ trợ làm việc nhóm hiệu quả
+    \item Tái sử dụng code cao
+\end{enumerate}
+
+% ------------------------------------------
+\subsection{Bảo mật ứng dụng web}
+
+\subsubsection{Session Security}
+
+Session là cơ chế lưu trữ thông tin người dùng trên server giữa các request.
+
+\textbf{Các biện pháp bảo mật session:}
+\begin{itemize}
+    \item Regenerate session ID sau khi đăng nhập
+    \item Đặt timeout cho session
+    \item Sử dụng HTTPS để mã hóa session cookie
+    \item Kiểm tra User-Agent và IP address
+\end{itemize}
+
+\subsubsection{XSS Prevention}
+
+Cross-Site Scripting (XSS) là lỗ hổng cho phép attacker chèn mã JavaScript độc hại.
+
+\textbf{Phòng chống XSS:}
+\begin{itemize}
+    \item Sử dụng \texttt{htmlspecialchars()} khi output dữ liệu
+    \item Content Security Policy (CSP) headers
+    \item Validate và sanitize input
+\end{itemize}
+
+\subsubsection{SQL Injection Prevention}
+
+SQL Injection xảy ra khi attacker chèn mã SQL vào input để thao túng database.
+
+\textbf{Phòng chống:}
+\begin{itemize}
+    \item Sử dụng Prepared Statements với PDO
+    \item Validate input type và length
+    \item Giới hạn quyền database user
+\end{itemize}
+
+\subsubsection{CSRF Protection}
+
+Cross-Site Request Forgery lừa người dùng thực hiện hành động không mong muốn.
+
+\textbf{Phòng chống CSRF:}
+\begin{itemize}
+    \item Sử dụng CSRF tokens trong forms
+    \item Kiểm tra Origin/Referer headers
+    \item SameSite cookie attribute
+\end{itemize}
+
+% ------------------------------------------
+\subsection{SEO cơ bản}
+
+Search Engine Optimization giúp website được tìm thấy dễ dàng trên các công cụ tìm kiếm.
+
+\textbf{Các yếu tố SEO on-page:}
+\begin{itemize}
+    \item \textbf{Title tags:} Tiêu đề trang ngắn gọn, có keyword
+    \item \textbf{Meta description:} Mô tả hấp dẫn dưới 160 ký tự
+    \item \textbf{Heading hierarchy:} Sử dụng H1-H6 đúng cách
+    \item \textbf{Semantic HTML:} Giúp search engine hiểu cấu trúc trang
+    \item \textbf{URL thân thiện:} URLs ngắn, có ý nghĩa
+    \item \textbf{Image alt text:} Mô tả hình ảnh cho accessibility và SEO
+    \item \textbf{Page speed:} Tốc độ tải trang ảnh hưởng ranking
+\end{itemize}
